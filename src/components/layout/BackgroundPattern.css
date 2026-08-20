@@ -1,0 +1,152 @@
+/* ============================================
+   BACKGROUND PATTERN
+   ============================================ */
+
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── Dot Grid ── */
+.bg-pattern__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    var(--color-border) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  opacity: 0.5;
+}
+
+[data-theme="light"] .bg-pattern__dots {
+  opacity: 0.3;
+}
+
+/* ── Floating Gradient Orbs ── */
+.bg-pattern__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  will-change: transform;
+}
+
+.bg-pattern__orb--1 {
+  width: 600px;
+  height: 600px;
+  top: -150px;
+  right: -100px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 255, 46, 0.06) 0%,
+    transparent 70%
+  );
+  animation: bg-float-1 20s ease-in-out infinite;
+}
+
+.bg-pattern__orb--2 {
+  width: 500px;
+  height: 500px;
+  bottom: 20%;
+  left: -150px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 255, 46, 0.04) 0%,
+    transparent 70%
+  );
+  animation: bg-float-2 25s ease-in-out infinite;
+}
+
+.bg-pattern__orb--3 {
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  right: 10%;
+  background: radial-gradient(
+    circle,
+    rgba(200, 255, 46, 0.03) 0%,
+    transparent 70%
+  );
+  animation: bg-float-3 30s ease-in-out infinite;
+}
+
+/* Light theme orbs */
+[data-theme="light"] .bg-pattern__orb--1 {
+  background: radial-gradient(
+    circle,
+    rgba(106, 180, 0, 0.05) 0%,
+    transparent 70%
+  );
+}
+
+[data-theme="light"] .bg-pattern__orb--2 {
+  background: radial-gradient(
+    circle,
+    rgba(106, 180, 0, 0.04) 0%,
+    transparent 70%
+  );
+}
+
+[data-theme="light"] .bg-pattern__orb--3 {
+  background: radial-gradient(
+    circle,
+    rgba(106, 180, 0, 0.03) 0%,
+    transparent 70%
+  );
+}
+
+/* ── Vignette ── */
+.bg-pattern__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+/* ── Animations ── */
+@keyframes bg-float-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(1.05);
+  }
+  66% {
+    transform: translate(20px, -20px) scale(0.95);
+  }
+}
+
+@keyframes bg-float-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.08);
+  }
+  66% {
+    transform: translate(-20px, 25px) scale(0.92);
+  }
+}
+
+@keyframes bg-float-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 20px) scale(1.04);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .bg-pattern__orb {
+    animation: none !important;
+  }
+}

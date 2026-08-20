@@ -1,0 +1,29 @@
+.grid-decoration {
+  position: absolute;
+  pointer-events: none;
+  color: var(--color-accent);
+}
+
+.grid-decoration--right {
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.grid-decoration--left {
+  left: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.grid-decoration--center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .grid-decoration {
+    display: none;
+  }
+}

@@ -1,0 +1,244 @@
+/* ============================================
+   CONTACT CTA — FLASH CARD ANIMATION
+   ============================================ */
+
+/* ── Perspective wrapper ── */
+.contact__perspective {
+  perspective: 1200px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── Card base ── */
+.contact__card {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12) var(--space-10);
+  text-align: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.5s ease;
+  will-change: transform;
+}
+
+.contact__card:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(200, 255, 46, 0.04);
+}
+
+[data-theme="light"] .contact__card:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.06), 0 0 40px rgba(106, 180, 0, 0.03);
+}
+
+/* ── Flash sweep ── */
+.contact__flash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(200, 255, 46, 0.06) 45%,
+    rgba(200, 255, 46, 0.12) 50%,
+    rgba(200, 255, 46, 0.06) 55%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  animation: contact-flash 1.5s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.contact__card:hover .contact__flash {
+  animation: contact-flash 1s ease-out;
+  opacity: 1;
+}
+
+@keyframes contact-flash {
+  0% {
+    opacity: 0;
+    background-position: 200% 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    background-position: -200% 0;
+  }
+}
+
+/* ── Interactive shine ── */
+.contact__shine {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: var(--radius-2xl);
+  transition: background 0.3s ease;
+}
+
+/* ── Glow border ── */
+.contact__glow {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(200, 255, 46, 0.12) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.contact__card:hover .contact__glow {
+  opacity: 1;
+}
+
+[data-theme="light"] .contact__glow {
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(106, 180, 0, 0.1) 50%,
+    transparent 70%
+  );
+}
+
+/* ── Inner content ── */
+.contact__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.contact__message {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+}
+
+.contact__ctas {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.contact__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: 600;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+  transition: all var(--duration-normal) var(--easing-default);
+  text-decoration: none;
+  font-family: var(--font-body);
+  letter-spacing: var(--tracking-wide);
+}
+
+.contact__cta--primary {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__cta--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.contact__cta--primary:hover::before {
+  transform: translateX(100%);
+}
+
+.contact__cta--primary:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(200, 255, 46, 0.25), 0 0 60px rgba(200, 255, 46, 0.08);
+}
+
+[data-theme="light"] .contact__cta--primary:hover {
+  box-shadow: 0 8px 32px rgba(106, 180, 0, 0.2), 0 0 60px rgba(106, 180, 0, 0.06);
+}
+
+.contact__cta--secondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__cta--secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent-dim);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact__cta--secondary:hover::before {
+  opacity: 1;
+}
+
+.contact__cta--secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(200, 255, 46, 0.08);
+}
+
+.contact__collab {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact__card {
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .contact__ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .contact__flash {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .contact__card {
+    transition: none !important;
+  }
+}

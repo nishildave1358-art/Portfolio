@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="#111111" stroke="#c8ff2e" stroke-width="2"/>
+  
+  <!-- Accent glow -->
+  <circle cx="200" cy="300" r="200" fill="#c8ff2e" opacity="0.04"/>
+  
+  <!-- Name -->
+  <text x="100" y="260" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="72" fill="#f0ece4" letter-spacing="-2">NISHIL</text>
+  <text x="100" y="340" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="72" fill="#c8ff2e" letter-spacing="-2">DAVE</text>
+  
+  <!-- Tagline -->
+  <text x="100" y="420" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="24" fill="#8a8a8a">Computer Engineering Student &amp; Developer</text>
+  
+  <!-- Subtitle -->
+  <text x="100" y="470" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#555555">Building software. Exploring security. Solving problems.</text>
+  
+  <!-- ND monogram -->
+  <rect x="1020" y="100" width="80" height="80" rx="16" fill="#c8ff2e"/>
+  <text x="1060" y="154" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="32" fill="#0a0a0a" letter-spacing="-1">ND</text>
+</svg>

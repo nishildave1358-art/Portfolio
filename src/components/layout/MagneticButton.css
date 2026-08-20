@@ -1,0 +1,7 @@
+.magnetic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}

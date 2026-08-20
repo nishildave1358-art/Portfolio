@@ -1,0 +1,14 @@
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-cursor) - 1);
+  pointer-events: none;
+}
+
+@media (pointer: coarse) {
+  .cursor-trail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-trail { display: none; }
+}

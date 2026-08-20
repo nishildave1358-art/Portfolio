@@ -1,0 +1,349 @@
+/* ============================================
+   CYBERSECURITY — FLASH CARD ANIMATION
+   ============================================ */
+
+/* ── 3D Perspective wrapper ── */
+.cybersecurity__perspective {
+  perspective: 1200px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ── Card base ── */
+.cybersecurity__card {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.cybersecurity__card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(200, 255, 46, 0.05);
+}
+
+[data-theme="light"] .cybersecurity__card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 40px rgba(106, 180, 0, 0.04);
+}
+
+/* ── Flash sweep ── */
+.cybersecurity__flash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(200, 255, 46, 0.08) 45%,
+    rgba(200, 255, 46, 0.15) 50%,
+    rgba(200, 255, 46, 0.08) 55%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  animation: flash-sweep 1.8s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.cybersecurity__card:hover .cybersecurity__flash {
+  animation: flash-sweep 1.2s ease-out;
+  opacity: 1;
+}
+
+@keyframes flash-sweep {
+  0% {
+    opacity: 0;
+    background-position: 200% 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    background-position: -200% 0;
+  }
+}
+
+/* ── Interactive shine (follows cursor) ── */
+.cybersecurity__shine {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: var(--radius-xl);
+  transition: background 0.3s ease;
+}
+
+/* ── Glow border ── */
+.cybersecurity__glow {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(200, 255, 46, 0.15) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.cybersecurity__card:hover .cybersecurity__glow {
+  opacity: 1;
+}
+
+[data-theme="light"] .cybersecurity__glow {
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(106, 180, 0, 0.12) 50%,
+    transparent 70%
+  );
+}
+
+/* ── Card header ── */
+.cybersecurity__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 2;
+}
+
+.cybersecurity__event-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-dim);
+  border-radius: var(--radius-lg);
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cybersecurity__card:hover .cybersecurity__event-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.cybersecurity__title-group {
+  flex: 1;
+}
+
+.cybersecurity__event-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.cybersecurity__event-detail {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+/* ── Rank badge ── */
+.cybersecurity__rank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-accent-dim);
+  border: 1px solid rgba(200, 255, 46, 0.2);
+  border-radius: var(--radius-lg);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cybersecurity__card:hover .cybersecurity__rank {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px rgba(200, 255, 46, 0.15);
+}
+
+[data-theme="light"] .cybersecurity__rank {
+  border: 1px solid rgba(106, 180, 0, 0.2);
+}
+
+[data-theme="light"] .cybersecurity__card:hover .cybersecurity__rank {
+  box-shadow: 0 0 24px rgba(106, 180, 0, 0.1);
+}
+
+.cybersecurity__rank-number {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  animation: rank-pulse 2s ease-in-out infinite;
+}
+
+@keyframes rank-pulse {
+  0%, 100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow: 0 0 16px var(--color-accent-glow);
+  }
+}
+
+.cybersecurity__rank-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+/* ── Card body ── */
+.cybersecurity__card-body {
+  margin-bottom: var(--space-6);
+  position: relative;
+  z-index: 2;
+}
+
+.cybersecurity__description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.cybersecurity__details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.cybersecurity__detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  transition: background 0.3s ease;
+}
+
+.cybersecurity__detail:hover {
+  background: var(--color-bg-tertiary);
+}
+
+.cybersecurity__detail-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.cybersecurity__detail-value {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.cybersecurity__detail-value--received {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ── Takeaways ── */
+.cybersecurity__takeaways {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 2;
+}
+
+.cybersecurity__takeaways-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-3);
+}
+
+.cybersecurity__takeaway-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cybersecurity__takeaway-tag {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  cursor: default;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cybersecurity__takeaway-tag:hover {
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent-glow);
+}
+
+/* ── Note ── */
+.cybersecurity__note {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .cybersecurity__card-header {
+    flex-wrap: wrap;
+  }
+
+  .cybersecurity__rank {
+    margin-left: 0;
+    margin-top: var(--space-2);
+  }
+
+  .cybersecurity__details {
+    grid-template-columns: 1fr;
+  }
+
+  .cybersecurity__card {
+    padding: var(--space-6);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .cybersecurity__flash {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .cybersecurity__rank-number {
+    animation: none !important;
+  }
+
+  .cybersecurity__card {
+    transition: none !important;
+  }
+}

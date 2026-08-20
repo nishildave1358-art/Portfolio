@@ -1,0 +1,220 @@
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline__item {
+  display: flex;
+  gap: var(--space-6);
+  transition: transform 0.3s ease;
+}
+
+.timeline__item:hover {
+  transform: translateX(4px);
+}
+
+.timeline__marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.timeline__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-tertiary);
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  margin-top: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline__item:hover .timeline__dot {
+  transform: scale(1.3);
+}
+
+.timeline__item--education .timeline__dot {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.timeline__item--education:hover .timeline__dot {
+  box-shadow: 0 0 16px var(--color-accent-glow);
+}
+
+.timeline__item--hackathon .timeline__dot {
+  background: #f0a030;
+  border-color: #f0a030;
+}
+
+.timeline__item--hackathon:hover .timeline__dot {
+  box-shadow: 0 0 16px rgba(240, 160, 48, 0.3);
+}
+
+.timeline__item--program .timeline__dot {
+  background: var(--color-text-muted);
+  border-color: var(--color-text-muted);
+}
+
+.timeline__item--program:hover .timeline__dot {
+  background: var(--color-text-secondary);
+  border-color: var(--color-text-secondary);
+  box-shadow: 0 0 12px rgba(138, 138, 138, 0.2);
+}
+
+.timeline__item--growth .timeline__dot {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  animation: growth-pulse 2s ease-in-out infinite;
+}
+
+@keyframes growth-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(200, 255, 46, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(200, 255, 46, 0);
+  }
+}
+
+.timeline__line {
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(
+    to bottom,
+    var(--color-border),
+    transparent
+  );
+  min-height: 20px;
+}
+
+.timeline__content {
+  padding-bottom: var(--space-10);
+  transition: transform 0.3s ease;
+}
+
+.timeline__item:hover .timeline__content {
+  transform: translateY(-2px);
+}
+
+.timeline__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__year {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.timeline__type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.timeline__item:hover .timeline__type {
+  background: var(--color-bg-elevated);
+}
+
+.timeline__type--hackathon {
+  color: #f0a030;
+  background: rgba(240, 160, 48, 0.1);
+}
+
+.timeline__item--hackathon:hover .timeline__type {
+  background: rgba(240, 160, 48, 0.15);
+}
+
+.timeline__type--growth {
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+}
+
+.timeline__item--growth:hover .timeline__type {
+  background: rgba(200, 255, 46, 0.12);
+}
+
+.timeline__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+  transition: color 0.3s ease;
+}
+
+.timeline__item:hover .timeline__title {
+  color: var(--color-accent);
+}
+
+.timeline__org {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  transition: color 0.3s ease;
+}
+
+.timeline__item:hover .timeline__description {
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 768px) {
+  .timeline__item {
+    gap: var(--space-4);
+  }
+
+  .timeline__item:hover {
+    transform: none;
+  }
+
+  .timeline__content {
+    padding-bottom: var(--space-8);
+  }
+
+  .timeline__item:hover .timeline__content {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline__item {
+    transition: none !important;
+  }
+
+  .timeline__item:hover {
+    transform: none !important;
+  }
+
+  .timeline__dot {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .timeline__item--growth .timeline__dot {
+    box-shadow: 0 0 12px var(--color-accent-glow);
+  }
+}

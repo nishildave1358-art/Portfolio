@@ -1,0 +1,152 @@
+.easter-egg__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.easter-egg__terminal {
+  width: 100%;
+  max-width: 560px;
+  background: #0d1117;
+  border: 1px solid rgba(200, 255, 46, 0.12);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(200, 255, 46, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.easter-egg__titlebar {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.easter-egg__dots {
+  display: flex;
+  gap: 6px;
+  margin-right: var(--space-4);
+}
+
+.easter-egg__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+.easter-egg__dot--red { background: #ff5f57; }
+.easter-egg__dot--yellow { background: #ffbd2e; }
+.easter-egg__dot--green { background: #28c840; }
+
+.easter-egg__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.easter-egg__close {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.easter-egg__close:hover {
+  color: var(--color-text-primary);
+}
+
+.easter-egg__body {
+  padding: var(--space-6);
+  min-height: 300px;
+  max-height: 420px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.easter-egg__line {
+  margin-bottom: var(--space-1);
+}
+
+.easter-egg__line--input {
+  color: var(--color-accent);
+}
+
+.easter-egg__line--output {
+  color: var(--color-text-secondary);
+}
+
+.easter-egg__prompt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.easter-egg__prompt-symbol {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.easter-egg__output {
+  padding-left: 18px;
+}
+
+.easter-egg__cursor {
+  color: var(--color-accent);
+  animation: blink 1s step-end infinite;
+  font-weight: 400;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.easter-egg__hint {
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.easter-egg__hint kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  margin: 0 1px;
+}
+
+/* Scrollbar */
+.easter-egg__body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.easter-egg__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.easter-egg__body::-webkit-scrollbar-thumb {
+  background: rgba(200, 255, 46, 0.15);
+  border-radius: 4px;
+}

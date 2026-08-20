@@ -158,9 +158,25 @@
   .code-showcase__body {
     padding: var(--space-4);
     min-height: 260px;
+    overflow-x: auto;
   }
 
   .code-showcase__code {
     font-size: 11px;
+    white-space: pre;
+  }
+
+  .code-showcase__line-numbers {
+    min-width: 20px;
+    font-size: 10px;
+  }
+
+  .code-showcase__tabs {
+    gap: 2px;
+  }
+
+  .code-showcase__tab {
+    padding: var(--space-1) var(--space-3);
+    font-size: 10px;
   }
 }

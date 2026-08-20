@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import "./MagneticButton.css";
 
@@ -18,11 +18,17 @@ export default function MagneticButton({
   const ref = useRef<HTMLButtonElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   const springX = useSpring(x, { stiffness: 300, damping: 20 });
   const springY = useSpring(y, { stiffness: 300, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (isTouch) return;
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -45,7 +51,7 @@ export default function MagneticButton({
     <motion.button
       ref={ref}
       className={`magnetic-button ${className}`}
-      style={{ x: springX, y: springY }}
+      style={{ x: isTouch ? 0 : springX, y: isTouch ? 0 : springY }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}

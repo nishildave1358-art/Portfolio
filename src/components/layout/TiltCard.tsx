@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface TiltCardProps {
@@ -14,6 +14,11 @@ export default function TiltCard({
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -28,7 +33,7 @@ export default function TiltCard({
   const glareY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
+    if (!ref.current || isTouch) return;
     const rect = ref.current.getBoundingClientRect();
     const xPos = (e.clientX - rect.left) / rect.width - 0.5;
     const yPos = (e.clientY - rect.top) / rect.height - 0.5;
@@ -36,7 +41,7 @@ export default function TiltCard({
     y.set(yPos);
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => !isTouch && setIsHovered(true);
   const handleMouseLeave = () => {
     setIsHovered(false);
     x.set(0);
@@ -48,8 +53,8 @@ export default function TiltCard({
       ref={ref}
       className={`tilt-card ${className}`}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: isTouch ? 0 : rotateX,
+        rotateY: isTouch ? 0 : rotateY,
         transformStyle: "preserve-3d",
       }}
       onMouseMove={handleMouseMove}
@@ -60,7 +65,7 @@ export default function TiltCard({
         {children}
       </div>
 
-      {glareEnabled && (
+      {glareEnabled && !isTouch && (
         <motion.div
           className="tilt-card__glare"
           style={{

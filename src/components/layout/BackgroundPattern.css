@@ -144,6 +144,33 @@
   }
 }
 
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .bg-pattern__dots {
+    background-size: 48px 48px;
+    opacity: 0.3;
+  }
+
+  .bg-pattern__orb {
+    filter: blur(100px);
+  }
+
+  .bg-pattern__orb--1 {
+    width: 400px;
+    height: 400px;
+  }
+
+  .bg-pattern__orb--2 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .bg-pattern__orb--3 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .bg-pattern__orb {

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./SpotlightCard.css";
 
 interface SpotlightCardProps {
@@ -15,9 +15,14 @@ export default function SpotlightCard({
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
+    if (!ref.current || isTouch) return;
     const rect = ref.current.getBoundingClientRect();
     setPosition({
       x: e.clientX - rect.left,
@@ -30,7 +35,7 @@ export default function SpotlightCard({
       ref={ref}
       className={`spotlight-card ${className}`}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => !isTouch && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
         "--spotlight-x": `${position.x}px`,

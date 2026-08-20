@@ -5,6 +5,13 @@
   z-index: 201;
 }
 
+@media (max-width: 768px) {
+  .theme-toggle-wrapper {
+    top: 12px;
+    right: 56px;
+  }
+}
+
 .theme-toggle {
   background: none;
   border: none;

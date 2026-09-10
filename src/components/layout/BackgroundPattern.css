@@ -27,12 +27,9 @@
   opacity: 0.3;
 }
 
-/* ── Floating Gradient Orbs ── */
+/* ── Floating Gradient Orbs — disabled for minimal lime/black theme ── */
 .bg-pattern__orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  will-change: transform;
+  display: none;
 }
 
 .bg-pattern__orb--1 {
@@ -99,15 +96,9 @@
   );
 }
 
-/* ── Vignette ── */
+/* ── Vignette — disabled for flat minimal theme ── */
 .bg-pattern__vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 50%,
-    var(--color-bg-primary) 100%
-  );
+  display: none;
 }
 
 /* ── Animations ── */

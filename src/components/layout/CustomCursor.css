@@ -1,10 +1,5 @@
 .custom-cursor {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-cursor);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none !important;
 }
 
 .custom-cursor--visible {
@@ -74,12 +69,7 @@
   filter: blur(10px);
 }
 
-/* Hide default cursor on desktop */
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
+/* Native cursor restored for minimal theme — custom cursor disabled */
 
 /* Don't hide on mobile/touch */
 @media (pointer: coarse) {

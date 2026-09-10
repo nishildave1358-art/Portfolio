@@ -3,24 +3,26 @@
    ============================================ */
 
 :root {
-  /* ── Colors ── */
-  --color-bg-primary: #0a0a0a;
-  --color-bg-secondary: #111111;
-  --color-bg-tertiary: #1a1a1a;
-  --color-bg-card: #141414;
-  --color-bg-elevated: #1e1e1e;
+  /* ── Colors — LIME / BLACK minimal system ── */
+  --color-bg-primary: #060606;
+  --color-bg-secondary: #0c0c0c;
+  --color-bg-tertiary: #131313;
+  --color-bg-card: #0e0e0e;
+  --color-bg-elevated: #141414;
 
-  --color-text-primary: #f0ece4;
-  --color-text-secondary: #8a8a8a;
-  --color-text-muted: #555555;
+  --color-text-primary: #f4f4f2;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #6e6e6e;
 
-  --color-accent: #c8ff2e;
-  --color-accent-dim: rgba(200, 255, 46, 0.08);
-  --color-accent-hover: #d4ff5c;
-  --color-accent-glow: rgba(200, 255, 46, 0.15);
+  --color-accent: #c6ff00;
+  --color-accent-dim: rgba(198, 255, 0, 0.07);
+  --color-accent-hover: #d6ff33;
+  --color-accent-pressed: #aee600;
+  --color-accent-glow: transparent;
 
-  --color-border: rgba(255, 255, 255, 0.06);
-  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-border: #1e1e1e;
+  --color-border-hover: #2a2a2a;
+  --color-border-accent: rgba(198, 255, 0, 0.28);
 
   --color-overlay: rgba(0, 0, 0, 0.7);
 
@@ -69,19 +71,19 @@
   --space-40: 10rem;
   --space-48: 12rem;
 
-  /* ── Radius ── */
+  /* ── Radius — minimal, sharp ── */
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 24px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
   --radius-full: 9999px;
 
-  /* ── Shadows ── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px var(--color-accent-glow);
+  /* ── Shadows — flat, no glow ── */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-glow: none;
 
   /* ── Motion ── */
   --duration-fast: 150ms;
@@ -111,38 +113,39 @@
   --z-toast: 500;
   --z-cursor: 9999;
 
-  /* ── Layout ── */
-  --max-width: 1200px;
-  --max-width-narrow: 800px;
-  --section-padding: clamp(4rem, 8vw, 8rem);
+  /* ── Layout — airy minimal ── */
+  --max-width: 1080px;
+  --max-width-narrow: 720px;
+  --section-padding: clamp(5rem, 9vw, 8rem);
 }
 
-/* ── Light Theme ── */
+/* ── Light Theme — minimal white / black / lime ── */
 [data-theme="light"] {
-  --color-bg-primary: #fafaf8;
-  --color-bg-secondary: #f0efed;
-  --color-bg-tertiary: #e5e4e1;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f6f6f4;
+  --color-bg-tertiary: #ececea;
   --color-bg-card: #ffffff;
   --color-bg-elevated: #ffffff;
 
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #5a5a5a;
-  --color-text-muted: #999999;
+  --color-text-primary: #0a0a0a;
+  --color-text-secondary: #525252;
+  --color-text-muted: #8a8a8a;
 
-  --color-accent: #6ab400;
-  --color-accent-dim: rgba(106, 180, 0, 0.08);
-  --color-accent-hover: #7cc700;
-  --color-accent-glow: rgba(106, 180, 0, 0.12);
+  --color-accent: #4d7c0f;
+  --color-accent-dim: rgba(77, 124, 15, 0.07);
+  --color-accent-hover: #3f680c;
+  --color-accent-glow: transparent;
 
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-border: #e7e7e4;
+  --color-border-hover: #d6d6d2;
+  --color-border-accent: rgba(77, 124, 15, 0.3);
 
   --color-overlay: rgba(255, 255, 255, 0.7);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --shadow-glow: 0 0 20px var(--color-accent-glow);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-glow: none;
 }
 
 [data-theme="light"] ::selection {
@@ -323,4 +326,149 @@ ul, ol {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
   position: relative;
+}
+
+/* ============================================
+   MINIMAL LIME / BLACK OVERRIDES
+   Kill AI-slop: grain, glows, orbs, trails,
+   glass, gradients. Flat, quiet, precise.
+   ============================================ */
+
+/* Hide noisy fixed layers entirely */
+.film-grain,
+.cursor-trail,
+.custom-cursor,
+.bg-pattern__orb,
+.bg-pattern__vignette,
+.hero__gradient-orb,
+.hero__overlay,
+.grid-decoration {
+  display: none !important;
+}
+
+/* Restore native cursor */
+@media (pointer: fine) {
+  * {
+    cursor: auto !important;
+  }
+  a, button, [role="button"] {
+    cursor: pointer !important;
+  }
+}
+
+/* Flat background — keep only an ultra-faint dot grid */
+.bg-pattern__dots {
+  opacity: 0.35 !important;
+  background-size: 36px 36px !important;
+}
+
+/* Kill all glows / text glows / deep shadows globally */
+* {
+  text-shadow: none !important;
+}
+
+[class*="glow"],
+[class*="shine"],
+[class*="spotlight"],
+[class*="orb"] {
+  box-shadow: none !important;
+}
+
+/* Flat cards everywhere */
+[class*="card"],
+[class*="panel"],
+[class*="tile"],
+.code-showcase,
+.cyber-card,
+.contact-cta,
+.timeline__card,
+.project-card,
+.about__card,
+.exploring__card {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Thin precise dividers, no gradient shimmer */
+.section-divider__line {
+  background: var(--color-border) !important;
+  height: 1px !important;
+}
+
+/* Scroll progress: flat 2px lime, no glow */
+.scroll-progress {
+  box-shadow: none !important;
+  height: 2px !important;
+}
+
+/* Navbar: flat black, thin border, no blur excess */
+.navbar--scrolled {
+  background: rgba(6, 6, 6, 0.92) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+[data-theme="light"] .navbar--scrolled {
+  background: rgba(255, 255, 255, 0.94) !important;
+  box-shadow: none !important;
+}
+
+.navbar__logo:hover .navbar__logo-mark,
+.navbar__cta:hover,
+.navbar__indicator {
+  box-shadow: none !important;
+}
+
+.navbar__indicator {
+  width: 16px !important;
+  height: 2px !important;
+  bottom: 0 !important;
+}
+
+/* Section headings: smaller accent bar, quiet */
+.section-heading__line {
+  width: 32px !important;
+  height: 2px !important;
+}
+
+.section-heading__label {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.14em !important;
+}
+
+/* Buttons: flat lime, black text, no lift/shadow */
+.hero__cta--primary:hover,
+.navbar__cta:hover,
+.mobile-menu__cta:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Marquee: no mask fade, plain rule lines */
+.marquee {
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Calm the status pulse — solid dot, no ring */
+.hero__status-dot {
+  animation: none !important;
+}
+
+.hero__letter--accent {
+  text-shadow: none !important;
+}
+
+.hero__scroll-line {
+  background: var(--color-border-hover) !important;
+}
+
+/* Links: simple lime underline on hover */
+a:hover {
+  text-shadow: none !important;
 }

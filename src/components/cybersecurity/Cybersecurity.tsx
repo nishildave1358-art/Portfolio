@@ -47,38 +47,6 @@ export default function Cybersecurity() {
   const isInView = useInView(cardRef, { once: true, margin: "-100px" });
   const reducedMotion = useReducedMotion();
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reducedMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 25;
-    const rotateY = (centerX - x) / 25;
-
-    cardRef.current.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-    // Move the shine effect
-    const shine = cardRef.current.querySelector(
-      ".cybersecurity__shine"
-    ) as HTMLElement;
-    if (shine) {
-      shine.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(200, 255, 46, 0.06), transparent 40%)`;
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transform = "";
-    const shine = cardRef.current.querySelector(
-      ".cybersecurity__shine"
-    ) as HTMLElement;
-    if (shine) {
-      shine.style.background = "transparent";
-    }
-  };
-
   return (
     <section className="cybersecurity section" id="cybersecurity">
       <div className="container">
@@ -92,27 +60,17 @@ export default function Cybersecurity() {
           <motion.div
             ref={cardRef}
             className="cybersecurity__card"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            initial={reducedMotion ? {} : { opacity: 0, y: 40, rotateX: 8 }}
+            initial={reducedMotion ? {} : { opacity: 0, y: 24 }}
             animate={
               isInView
-                ? { opacity: 1, y: 0, rotateX: 0 }
+                ? { opacity: 1, y: 0 }
                 : {}
             }
             transition={{
-              duration: 0.8,
+              duration: 0.5,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            {/* Flash sweep overlay */}
-            <div className="cybersecurity__flash" />
-
-            {/* Interactive shine layer */}
-            <div className="cybersecurity__shine" />
-
-            {/* Glow border */}
-            <div className="cybersecurity__glow" />
 
             <motion.div
               variants={reducedMotion ? undefined : stagger}

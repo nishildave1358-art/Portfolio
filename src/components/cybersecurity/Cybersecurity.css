@@ -9,104 +9,29 @@
   margin: 0 auto;
 }
 
-/* ── Card base ── */
+/* ── Card base — flat minimal ── */
 .cybersecurity__card {
   position: relative;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-8);
   overflow: hidden;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease, box-shadow 0.4s ease;
-  will-change: transform;
 }
 
 .cybersecurity__card:hover {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(200, 255, 46, 0.05);
+  border-color: var(--color-border-hover);
 }
 
 [data-theme="light"] .cybersecurity__card:hover {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 40px rgba(106, 180, 0, 0.04);
+  border-color: var(--color-border-hover);
 }
 
-/* ── Flash sweep ── */
-.cybersecurity__flash {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(200, 255, 46, 0.08) 45%,
-    rgba(200, 255, 46, 0.15) 50%,
-    rgba(200, 255, 46, 0.08) 55%,
-    transparent 60%
-  );
-  background-size: 250% 100%;
-  background-position: 200% 0;
-  animation: flash-sweep 1.8s ease-out forwards;
-  animation-delay: 0.5s;
-  opacity: 0;
-}
-
-.cybersecurity__card:hover .cybersecurity__flash {
-  animation: flash-sweep 1.2s ease-out;
-  opacity: 1;
-}
-
-@keyframes flash-sweep {
-  0% {
-    opacity: 0;
-    background-position: 200% 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    background-position: -200% 0;
-  }
-}
-
-/* ── Interactive shine (follows cursor) ── */
-.cybersecurity__shine {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: var(--radius-xl);
-  transition: background 0.3s ease;
-}
-
-/* ── Glow border ── */
+/* ── Flash / shine / glow — disabled for minimal theme ── */
+.cybersecurity__flash,
+.cybersecurity__shine,
 .cybersecurity__glow {
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(200, 255, 46, 0.15) 50%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.cybersecurity__card:hover .cybersecurity__glow {
-  opacity: 1;
-}
-
-[data-theme="light"] .cybersecurity__glow {
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(106, 180, 0, 0.12) 50%,
-    transparent 70%
-  );
+  display: none;
 }
 
 /* ── Card header ── */

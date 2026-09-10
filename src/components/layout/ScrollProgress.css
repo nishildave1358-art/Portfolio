@@ -7,5 +7,4 @@
   background: var(--color-accent);
   transform-origin: left;
   z-index: calc(var(--z-sticky) + 1);
-  box-shadow: 0 0 10px rgba(200, 255, 46, 0.3);
 }

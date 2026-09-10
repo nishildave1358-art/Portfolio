@@ -2,11 +2,7 @@ import { useState, useCallback } from "react";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
 import { useTheme } from "../hooks/useTheme";
 import Navbar from "../components/layout/Navbar";
-import CustomCursor from "../components/layout/CustomCursor";
-import CursorTrail from "../components/layout/CursorTrail";
 import PageLoader from "../components/layout/PageLoader";
-import FilmGrain from "../components/layout/FilmGrain";
-import BackgroundPattern from "../components/layout/BackgroundPattern";
 import ScrollProgress from "../components/layout/ScrollProgress";
 import SectionDivider from "../components/layout/SectionDivider";
 import BackToTop from "../components/layout/BackToTop";
@@ -24,7 +20,7 @@ import Footer from "../components/layout/Footer";
 import EasterEgg from "../components/easter-egg/EasterEgg";
 
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
+  const [, setLoaded] = useState(false);
   const { theme, toggleTheme } = useTheme();
   useSmoothScroll();
 
@@ -38,10 +34,6 @@ export default function Home() {
         Skip to content
       </a>
       <PageLoader onComplete={handleLoadComplete} />
-      {loaded && <CustomCursor />}
-      {loaded && <CursorTrail />}
-      <BackgroundPattern />
-      <FilmGrain />
       <ScrollProgress />
       <div className="theme-toggle-wrapper">
         <ThemeToggle theme={theme} onToggle={toggleTheme} />

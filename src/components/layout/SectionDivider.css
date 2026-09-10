@@ -10,14 +10,7 @@
 .section-divider__line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-border) 20%,
-    var(--color-accent-dim) 50%,
-    var(--color-border) 80%,
-    transparent
-  );
+  background: var(--color-border);
   transform-origin: center;
 }
 

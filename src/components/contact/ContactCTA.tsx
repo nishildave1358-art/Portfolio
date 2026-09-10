@@ -28,29 +28,6 @@ export default function ContactCTA() {
   const isInView = useInView(cardRef, { once: true, margin: "-100px" });
   const reducedMotion = useReducedMotion();
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reducedMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const shine = cardRef.current.querySelector(
-      ".contact__shine"
-    ) as HTMLElement;
-    if (shine) {
-      shine.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(200, 255, 46, 0.06), transparent 40%)`;
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    const shine = cardRef.current.querySelector(
-      ".contact__shine"
-    ) as HTMLElement;
-    if (shine) {
-      shine.style.background = "transparent";
-    }
-  };
-
   return (
     <section className="contact section" id="contact">
       <div className="container">
@@ -65,25 +42,17 @@ export default function ContactCTA() {
           <motion.div
             ref={cardRef}
             className="contact__card"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            initial={reducedMotion ? {} : { opacity: 0, y: 40, rotateX: 5 }}
+            initial={reducedMotion ? {} : { opacity: 0, y: 24 }}
             animate={
               isInView
-                ? { opacity: 1, y: 0, rotateX: 0 }
+                ? { opacity: 1, y: 0 }
                 : {}
             }
             transition={{
-              duration: 0.8,
+              duration: 0.5,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            {/* Flash sweep */}
-            <div className="contact__flash" />
-            {/* Interactive shine */}
-            <div className="contact__shine" />
-            {/* Glow border */}
-            <div className="contact__glow" />
 
             <motion.div
               className="contact__inner"

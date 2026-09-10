@@ -9,105 +9,28 @@
   margin: 0 auto;
 }
 
-/* ── Card base ── */
+/* ── Card base — flat minimal ── */
 .contact__card {
   position: relative;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-12) var(--space-10);
   text-align: center;
   overflow: hidden;
-  transform-style: preserve-3d;
-  transition: transform 0.4s ease, box-shadow 0.5s ease;
-  will-change: transform;
 }
 
 .contact__card:hover {
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(200, 255, 46, 0.04);
+  border-color: var(--color-border-hover);
 }
 
 [data-theme="light"] .contact__card:hover {
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.06), 0 0 40px rgba(106, 180, 0, 0.03);
+  border-color: var(--color-border-hover);
 }
 
-/* ── Flash sweep ── */
+/* ── Flash sweep — disabled for minimal theme ── */
 .contact__flash {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(200, 255, 46, 0.06) 45%,
-    rgba(200, 255, 46, 0.12) 50%,
-    rgba(200, 255, 46, 0.06) 55%,
-    transparent 60%
-  );
-  background-size: 250% 100%;
-  background-position: 200% 0;
-  animation: contact-flash 1.5s ease-out forwards;
-  animation-delay: 0.6s;
-  opacity: 0;
-}
-
-.contact__card:hover .contact__flash {
-  animation: contact-flash 1s ease-out;
-  opacity: 1;
-}
-
-@keyframes contact-flash {
-  0% {
-    opacity: 0;
-    background-position: 200% 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    background-position: -200% 0;
-  }
-}
-
-/* ── Interactive shine ── */
-.contact__shine {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: var(--radius-2xl);
-  transition: background 0.3s ease;
-}
-
-/* ── Glow border ── */
-.contact__glow {
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border-radius: var(--radius-2xl);
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(200, 255, 46, 0.12) 50%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.contact__card:hover .contact__glow {
-  opacity: 1;
-}
-
-[data-theme="light"] .contact__glow {
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(106, 180, 0, 0.1) 50%,
-    transparent 70%
-  );
+  display: none;
 }
 
 /* ── Inner content ── */
@@ -153,31 +76,15 @@
 }
 
 .contact__cta--primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-}
-
-.contact__cta--primary:hover::before {
-  transform: translateX(100%);
+  display: none;
 }
 
 .contact__cta--primary:hover {
   background: var(--color-accent-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(200, 255, 46, 0.25), 0 0 60px rgba(200, 255, 46, 0.08);
 }
 
 [data-theme="light"] .contact__cta--primary:hover {
-  box-shadow: 0 8px 32px rgba(106, 180, 0, 0.2), 0 0 60px rgba(106, 180, 0, 0.06);
+  background: var(--color-accent-hover);
 }
 
 .contact__cta--secondary {
@@ -204,8 +111,6 @@
 .contact__cta--secondary:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(200, 255, 46, 0.08);
 }
 
 .contact__collab {
